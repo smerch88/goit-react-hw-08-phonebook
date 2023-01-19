@@ -61,6 +61,7 @@ export const ContactForm = ({ addUser }) => {
           type="submit"
           variant="gradient"
           gradient={{ from: 'teal', to: 'blue', deg: 60 }}
+          sx={{ marginBottom: '20px' }}
         >
           Add Contact
         </Button>

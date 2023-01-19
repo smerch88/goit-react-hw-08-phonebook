@@ -25,6 +25,10 @@ export const MyGlobalStyles = () => {
           gap: '12px',
           paddingLeft: 0,
         },
+        a: {
+          textDecoration: 'none',
+          color: 'currentColor',
+        },
       })}
     />
   );

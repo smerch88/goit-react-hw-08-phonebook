@@ -1,3 +1,4 @@
+import { Button, Flex, Text } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperations';
 import {
@@ -23,11 +24,18 @@ export const UserMenu = () => {
   const { user } = useAuth();
 
   return (
-    <div>
-      <p>Welcome, {user.name}</p>
-      <button type="button" onClick={() => dispatch(logOut())}>
+    <Flex
+      mih={100}
+      gap="md"
+      justify="space-around"
+      align="center"
+      direction="row"
+      wrap="nowrap"
+    >
+      <Text sx={{ marginLeft: '24px' }}>Welcome, {user.name}</Text>
+      <Button type="button" onClick={() => dispatch(logOut())}>
         Logout
-      </button>
-    </div>
+      </Button>
+    </Flex>
   );
 };

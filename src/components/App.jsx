@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@mantine/core';
+import { Container, MantineProvider, SimpleGrid } from '@mantine/core';
 import { Layout } from './Layout';
 import { Route, Routes } from 'react-router-dom';
 
@@ -12,47 +12,66 @@ import { ContactsPage } from 'pages/ContactsPage';
 import { useEffect } from 'react';
 import { refreshUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
+import { MyGlobalStyles } from 'global.Styled';
+import { useState } from 'react';
 
 export const App = () => {
+  const [colorScheme, setColorScheme] = useState('dark');
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  const changeTheme = () => {
+    colorScheme === 'dark' ? setColorScheme('light') : setColorScheme('dark');
+  };
+
   return (
     <>
-      <SimpleGrid cols={1} spacing="md">
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route
-              path="register"
-              element={
-                <RestrictedRoute
-                  redirectTo="/contacts"
-                  component={<Register />}
+      <MantineProvider
+        withNormalizeCSS
+        withGlobalStyles
+        theme={{ colorScheme: colorScheme }}
+      >
+        <MyGlobalStyles />
+        <Container>
+          <SimpleGrid cols={1} spacing="lg">
+            <Routes>
+              <Route path="/" element={<Layout changeTheme={changeTheme} />}>
+                <Route index element={<Home changeTheme={changeTheme} />} />
+                <Route
+                  path="register"
+                  element={
+                    <RestrictedRoute
+                      redirectTo="/contacts"
+                      component={<Register />}
+                    />
+                  }
                 />
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <RestrictedRoute redirectTo="/contacts" component={<Login />} />
-              }
-            />
-            <Route
-              path="contacts"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<ContactsPage />}
+                <Route
+                  path="login"
+                  element={
+                    <RestrictedRoute
+                      redirectTo="/contacts"
+                      component={<Login />}
+                    />
+                  }
                 />
-              }
-            />
-          </Route>
-        </Routes>
-      </SimpleGrid>
+                <Route
+                  path="contacts"
+                  element={
+                    <PrivateRoute
+                      redirectTo="/login"
+                      component={<ContactsPage />}
+                    />
+                  }
+                />
+              </Route>
+            </Routes>
+          </SimpleGrid>
+        </Container>
+      </MantineProvider>
     </>
   );
 };

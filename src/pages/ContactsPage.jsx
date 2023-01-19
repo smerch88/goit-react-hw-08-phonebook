@@ -52,7 +52,7 @@ export const ContactsPage = () => {
       <Title order={2} size="h2" data-aos="zoom-in">
         Contacts
       </Title>
-      <Text fw={400} data-aos="zoom-in">
+      <Text fw={400} data-aos="zoom-in" sx={{ marginBottom: '20px' }}>
         There are {contacts.length} contacts in the Phonebook.
       </Text>
       <Filter setFilterValue={setFilterValue} />
