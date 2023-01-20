@@ -2,10 +2,7 @@ import PropTypes from 'prop-types';
 import { Box, Button, Center, Flex, Loader, Text } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import {
-  fetchContacts,
-  updateContact,
-} from 'redux/contacts/contactsOperations';
+import { fetchContacts } from 'redux/contacts/contactsOperations';
 import {
   getContacts,
   getError,
