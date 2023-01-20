@@ -72,9 +72,6 @@ export const ContactList = ({ deleteUser }) => {
                     <Text fw={400}>
                       {contact.name}: {contact.number}
                     </Text>
-                    <Button onClick={() => updateContact(contact.id)}>
-                      Update
-                    </Button>
                     <Button onClick={() => deleteUser(contact.id)}>
                       Delete
                     </Button>
